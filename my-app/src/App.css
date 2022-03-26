@@ -1,0 +1,89 @@
+body {
+   background: rgb(38, 38, 38);
+   color: white;
+}
+
+.header {
+   display: flex;
+   justify-content: space-around;
+   height: 150px;
+}
+
+.header__menu {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 450px;
+   font-size: 22px;
+   margin-right: 50px;
+}
+
+.header__logo {
+   display: flex;
+   align-items: center;
+}
+
+.header__logo img {
+   width: 117px;
+   height: 82px;
+}
+
+.header__menu a {
+   color: white;
+   text-decoration: none;
+}
+
+.header__menu a:hover {
+   text-decoration: underline;
+}
+
+.footer {
+   height: 50px;
+}
+
+.footer__words {
+   display: flex;
+   justify-content: center;
+   padding: 10px;
+}
+
+.block__list {
+   display: flex;
+   justify-content: center;
+}
+.block__user {
+   margin-right: 200px;
+}
+
+.users__list {
+   width: 550px;
+   display: flex;
+   padding: 7px;
+   border: 1px solid white;
+   border-radius: 10px;
+   margin-top: 5px;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.block__remove button {
+   padding: 5px 15px;
+   background: red;
+   font-size: 14px;
+   border: 1px solid red;
+   border-radius: 10px;
+   color: white;
+   cursor: pointer;
+}
+
+.input__search {
+   width: 200px;
+   height: 30px;
+   border: 2px solid green;
+   border-radius: 10px;
+   font-family: "Roboto";
+   font-style: normal;
+   font-weight: 700;
+   font-size: 18px;
+   text-align: center;
+}
