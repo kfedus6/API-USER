@@ -14,7 +14,7 @@ body {
    justify-content: space-between;
    align-items: center;
    width: 450px;
-   font-size: 22px;
+   font-size: 20px;
    margin-right: 50px;
 }
 
@@ -86,4 +86,28 @@ body {
    font-weight: 700;
    font-size: 18px;
    text-align: center;
+}
+
+.block__add-user {
+   margin-top: 150px;
+}
+
+.block__add-user button {
+   margin: 13px;
+   width: 200px;
+   height: 30px;
+   border: 2px solid rgb(50, 160, 50);
+   background: rgb(50, 160, 50);
+   border-radius: 10px;
+   font-family: "Roboto";
+   font-style: normal;
+   font-weight: 700;
+   font-size: 18px;
+   text-align: center;
+   cursor: pointer;
+}
+
+.img img {
+   width: 230px;
+   height: 220px;
 }

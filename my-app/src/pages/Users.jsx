@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import PostService from '../API/PostService';
+import ButtonAddUser from '../Components/UI/ButtonAddUser';
 import InputSearch from '../Components/UI/InputSearch';
 import UserList from '../Components/UserList';
+import Img from '../Components/Images/img.png'
 
 function Users() {
    const [users, setUsers] = useState([]);
@@ -36,8 +38,13 @@ function Users() {
             <InputSearch querySearch={querySearch} setQuerySearch={setQuerySearch} />
             <UserList users={usersSearch} removeUser={removeUser} />
          </div>
+         <div className='block__add-user'>
+            <ButtonAddUser />
+            <div className='img'>
+               <img src={Img} alt="img" />
+            </div>
+         </div>
       </div>
-
       </>
    )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 function Information() {
    return (
-      <h2>Information</h2>
+      <h2>Информация</h2>
    )
 }
 
