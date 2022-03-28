@@ -24,8 +24,8 @@ body {
 }
 
 .header__logo img {
-   width: 117px;
-   height: 82px;
+   width: 120px;
+   height: 120px;
 }
 
 .header__menu a {
@@ -44,7 +44,7 @@ body {
 .footer__words {
    display: flex;
    justify-content: center;
-   padding: 10px;
+   align-items: center;
 }
 
 .block__list {
@@ -76,38 +76,42 @@ body {
    cursor: pointer;
 }
 
-.input__search {
-   width: 200px;
-   height: 30px;
-   border: 2px solid green;
-   border-radius: 10px;
-   font-family: "Roboto";
-   font-style: normal;
-   font-weight: 700;
-   font-size: 18px;
-   text-align: center;
+.img img {
+   width: 300px;
+   height: 300px;
 }
 
-.block__add-user {
-   margin-top: 150px;
+.user__CSStransition-enter {
+   opacity: 0;
+}
+.user__CSStransition-enter-active {
+   opacity: 1;
+   transition: opacity 200ms;
+}
+.user__CSStransition-exit {
+   opacity: 1;
+}
+.user__CSStransition-exit-active {
+   transform: translateX(-650px);
+   transition: all 1s ease-in;
 }
 
-.block__add-user button {
-   margin: 13px;
-   width: 200px;
-   height: 30px;
-   border: 2px solid rgb(50, 160, 50);
-   background: rgb(50, 160, 50);
-   border-radius: 10px;
-   font-family: "Roboto";
-   font-style: normal;
-   font-weight: 700;
-   font-size: 18px;
-   text-align: center;
+.create {
+   width: 90%;
+   padding: 5px 15px;
+   margin: 5px 0;
+   border: 1px solid white;
+   border-radius: 5px;
+}
+
+.button__img {
+   border-radius: 40px;
+   border: 1px solid #dfdfdf;
+   background-color: #dfdfdf;
    cursor: pointer;
 }
 
-.img img {
-   width: 230px;
-   height: 220px;
+.button__img img {
+   width: 40px;
+   height: 40px;
 }

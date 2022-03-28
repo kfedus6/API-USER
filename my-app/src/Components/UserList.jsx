@@ -1,5 +1,6 @@
 import React from 'react';
 import User from './User';
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 function UserList({ users, removeUser }) {
 
@@ -13,15 +14,20 @@ function UserList({ users, removeUser }) {
 
    return (
       <>
-         {
-            users.map((item, index) => {
-               return (
-                  <div className='users__list' key={index}>
-                     <User user={item} removeUser={removeUser} />
-                  </div>
-               )
-            })
-         }
+         <TransitionGroup>
+            {
+               users.map((item, index) => {
+                  return (
+                     <CSSTransition key={item.id} classNames='user__CSStransition' timeout={1000}>
+                        <div className='users__list'>
+                           <User item={item} removeUser={removeUser} index={index} />
+                        </div>
+                     </CSSTransition>
+                  )
+               })
+            }
+         </TransitionGroup>
+
       </>
    )
 }
