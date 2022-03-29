@@ -5,7 +5,7 @@ function Footer() {
       <>
          <footer className='footer'>
             <hr />
-            <span className='footer__words'>Все права защищены</span>
+            <span className='footer__words'>Всі права захищені</span>
          </footer>
       </>
 

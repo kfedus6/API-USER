@@ -3,11 +3,11 @@ import React from 'react'
 function User({ item, index, removeUser }) {
    return (
       <>
-         <span className='idx'>{index + 1}.</span>
-         <span className="name">Имя: {item.name}</span>
-         <span className="email">Email: {item.email}</span>
-         <div className='block__remove'>
-            <button onClick={() => removeUser(item)}>Удалить</button>
+         <span>{index + 1}.</span>
+         <span>Імя: {item.name}</span>
+         <span>Email: {item.email}</span>
+         <div className='user__remove'>
+            <button onClick={() => removeUser(item)}>Видалити</button>
          </div>
       </>
    )

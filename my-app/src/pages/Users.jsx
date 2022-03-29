@@ -7,11 +7,13 @@ import ImgUsers from '../Components/Images/users.png'
 import Modal from '../Components/UI/Modal/Modal';
 import cl from '../Components/UI/ButtonAddUser/ButtonAddUser.module.css'
 import UserForm from '../Components/UserForm';
+import SelectUsers from '../Components/UI/SelectUsers/SelectUsers';
 
 function Users() {
    const [users, setUsers] = useState([]);
    const [querySearch, setQuerySearch] = useState('');
-   const [visible, setVisible] = useState(false)
+   const [visible, setVisible] = useState(false);
+   const [usersSort, setUsersSort] = useState('');
 
    useEffect(() => {
       loadUser()
@@ -41,15 +43,22 @@ function Users() {
       setVisible(false);
    }
 
+   const sortedUsers = (sort) => {
+      setUsersSort(sort);
+      setUsers([...users.sort((a, b) => a[sort].localeCompare(b[sort]))]);
+   }
 
    return (
       <>
          <Modal visible={visible} setVisible={setVisible} >
             <UserForm createUser={createUser} />
          </Modal>
-         <div className='block__list'>
-            <div className='block__user'>
-               <InputSearch querySearch={querySearch} setQuerySearch={setQuerySearch} />
+         <div className='user'>
+            <div className='user__content'>
+               <div className='search__sort'>
+                  <InputSearch querySearch={querySearch} setQuerySearch={setQuerySearch} />
+                  <SelectUsers usersSort={usersSort} sortedUsers={sortedUsers} />
+               </div>
                <UserList users={usersSearch} removeUser={removeUser} />
             </div>
             <div className={cl.block__add}>

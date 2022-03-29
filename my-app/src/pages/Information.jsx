@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 function Information() {
    return (
-      <h2>Информация</h2>
+      <h2>Інформація</h2>
    )
 }
 

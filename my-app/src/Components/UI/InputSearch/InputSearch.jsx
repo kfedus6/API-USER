@@ -7,7 +7,7 @@ function InputSearch({ querySearch, setQuerySearch }) {
          onChange={(e) => setQuerySearch(e.target.value)}
          value={querySearch}
          type="text"
-         placeholder='Поиск'
+         placeholder='Пошук'
       />
    )
 }

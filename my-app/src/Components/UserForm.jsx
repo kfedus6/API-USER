@@ -15,7 +15,7 @@ function UserForm({ createUser }) {
          <input
             className='create'
             type="text"
-            placeholder='Имя'
+            placeholder='Імя'
             value={user.name}
             onChange={(e) => setUser({ ...user, name: e.target.value, id: e.target.value })}
          />

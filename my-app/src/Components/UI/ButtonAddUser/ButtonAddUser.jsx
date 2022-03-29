@@ -3,7 +3,7 @@ import cl from './ButtonAddUser.module.css';
 
 function ButtonAddUser({ setVisible }) {
    return (
-      <button onClick={() => setVisible(true)} className={cl.add__user}>Добавить</button>
+      <button onClick={() => setVisible(true)} className={cl.add__user}>Добавити</button>
    )
 }
 

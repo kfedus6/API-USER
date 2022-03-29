@@ -10,9 +10,9 @@ function Header() {
                <img src={logo} alt='logo' />
             </div>
             <div className='header__menu'>
-               <Link to="/">Пользователь</Link>
-               <Link to="/information">Информация</Link>
-               <Link to="/reviews">Отзывы</Link>
+               <Link to="/">Користувач</Link>
+               <Link to="/information">Інформація</Link>
+               <Link to="/reviews">Відгук</Link>
             </div>
          </header>
       </>

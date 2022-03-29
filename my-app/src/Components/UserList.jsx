@@ -19,7 +19,7 @@ function UserList({ users, removeUser }) {
                users.map((item, index) => {
                   return (
                      <CSSTransition key={item.id} classNames='user__CSStransition' timeout={1000}>
-                        <div className='users__list'>
+                        <div className='user__list'>
                            <User item={item} removeUser={removeUser} index={index} />
                         </div>
                      </CSSTransition>
@@ -27,7 +27,6 @@ function UserList({ users, removeUser }) {
                })
             }
          </TransitionGroup>
-
       </>
    )
 }
