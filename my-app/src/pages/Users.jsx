@@ -8,44 +8,50 @@ import Modal from '../Components/UI/Modal/Modal';
 import cl from '../Components/UI/ButtonAddUser/ButtonAddUser.module.css'
 import UserForm from '../Components/UserForm';
 import SelectUsers from '../Components/UI/SelectUsers/SelectUsers';
+import Loader from '../Components/UI/Loader/Loader';
 
 function Users() {
    const [users, setUsers] = useState([]);
    const [querySearch, setQuerySearch] = useState('');
    const [visible, setVisible] = useState(false);
    const [usersSort, setUsersSort] = useState('');
+   const [loader, setLoader] = useState(false);
 
    useEffect(() => {
       loadUser()
    }, [])
 
    const loadUser = async () => {
+      setLoader(true)
       const data = await PostService.getUsers()
       setUsers(data)
+      setLoader(false)
    }
 
    const removeUser = (user) => {
       let newUsers = users.filter(item => item.name !== user.name);
       setUsers(newUsers);
-
    }
 
-   const usersSearch = useMemo(() => {
-      if (querySearch === '') {
-         return users;
+   const sortedUsers = useMemo(() => {
+      if (usersSort) {
+         return [...users.sort((a, b) => a[usersSort].localeCompare(b[usersSort]))]
       } else {
-         return users.filter(item => item.name.toLowerCase().includes(querySearch.toLocaleLowerCase()))
+         return users
       }
-   }, [querySearch, users])
+   }, [usersSort, users])
+
+   const usersSearchedAndSorted = useMemo(() => {
+      return sortedUsers.filter(item => item.name.toLowerCase().includes(querySearch.toLocaleLowerCase()))
+   }, [querySearch, sortedUsers])
 
    const createUser = (newUser) => {
       setUsers([...users, newUser]);
       setVisible(false);
    }
 
-   const sortedUsers = (sort) => {
+   const sortUsers = (sort) => {
       setUsersSort(sort);
-      setUsers([...users.sort((a, b) => a[sort].localeCompare(b[sort]))]);
    }
 
    return (
@@ -57,9 +63,11 @@ function Users() {
             <div className='user__content'>
                <div className='search__sort'>
                   <InputSearch querySearch={querySearch} setQuerySearch={setQuerySearch} />
-                  <SelectUsers usersSort={usersSort} sortedUsers={sortedUsers} />
+                  <SelectUsers usersSort={usersSort} sortUsers={sortUsers} />
                </div>
-               <UserList users={usersSearch} removeUser={removeUser} />
+               {
+                  loader ? <Loader /> : <UserList users={usersSearchedAndSorted} removeUser={removeUser} />
+               }
             </div>
             <div className={cl.block__add}>
                <ButtonAddUser setVisible={setVisible} />

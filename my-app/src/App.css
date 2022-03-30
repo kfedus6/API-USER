@@ -55,10 +55,11 @@ body {
 .user {
    display: flex;
    justify-content: center;
+   margin-top: 70px;
 }
 
 .user__content {
-   margin-right: 200px;
+   margin-right: 100px;
 }
 
 .user__list {
@@ -120,4 +121,8 @@ body {
 .button__img img {
    width: 40px;
    height: 40px;
+}
+
+.active {
+   border-bottom: 3px solid white;
 }
