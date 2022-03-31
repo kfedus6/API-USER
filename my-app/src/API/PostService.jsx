@@ -1,16 +1,14 @@
 import axios from 'axios';
 
 class PostService {
-   static async getUsers() {
+   static async getUsers(limit, page) {
       const response = await axios.get('https://jsonplaceholder.typicode.com/users/', {
          params: {
-            _limit: 3,
-            _page: 1
+            _limit: limit,
+            _page: page
          }
       })
-      const headers = response.headers;
-      console.log(headers);
-      return response.data
+      return response
    }
 }
 

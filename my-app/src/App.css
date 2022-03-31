@@ -126,3 +126,9 @@ body {
 .active {
    border-bottom: 3px solid white;
 }
+
+.page {
+   padding: 10px;
+   border: 2px solid rgb(50, 160, 50);
+   cursor: pointer;
+}

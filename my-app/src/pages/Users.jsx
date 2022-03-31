@@ -3,12 +3,13 @@ import PostService from '../API/PostService';
 import ButtonAddUser from '../Components/UI/ButtonAddUser/ButtonAddUser';
 import InputSearch from '../Components/UI/InputSearch/InputSearch';
 import UserList from '../Components/UserList';
-import ImgUsers from '../Components/Images/users.png'
+import ImgUsers from '../Components/Images/users.png';
 import Modal from '../Components/UI/Modal/Modal';
-import cl from '../Components/UI/ButtonAddUser/ButtonAddUser.module.css'
+import cl from '../Components/UI/ButtonAddUser/ButtonAddUser.module.css';
 import UserForm from '../Components/UserForm';
 import SelectUsers from '../Components/UI/SelectUsers/SelectUsers';
 import Loader from '../Components/UI/Loader/Loader';
+import { getPagesArray, getPagesCount } from '../Components/PagesCount/PagesCount';
 
 function Users() {
    const [users, setUsers] = useState([]);
@@ -16,16 +17,22 @@ function Users() {
    const [visible, setVisible] = useState(false);
    const [usersSort, setUsersSort] = useState('');
    const [loader, setLoader] = useState(false);
+   const [totalPages, setTotalPages] = useState(0);
+   const [limit, setLimit] = useState(3);
+   const [page, setPage] = useState(1);
+   let pagesArray = getPagesArray(totalPages);
 
    useEffect(() => {
       loadUser()
    }, [])
 
    const loadUser = async () => {
-      setLoader(true)
-      const data = await PostService.getUsers()
-      setUsers(data)
-      setLoader(false)
+      setLoader(true);
+      const response = await PostService.getUsers(limit, page);
+      setUsers(response.data);
+      const totalCount = response.headers['x-total-count'];
+      setTotalPages(getPagesCount(totalCount, limit));
+      setLoader(false);
    }
 
    const removeUser = (user) => {
@@ -75,6 +82,13 @@ function Users() {
                   <img src={ImgUsers} alt="img" />
                </div>
             </div>
+         </div>
+         <div>
+            {
+               pagesArray.map((p, idx) => {
+                  return <span key={idx} className='page'>{p}</span>
+               })
+            }
          </div>
       </>
    )
