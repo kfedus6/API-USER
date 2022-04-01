@@ -24,7 +24,7 @@ function Users() {
 
    useEffect(() => {
       loadUser()
-   }, [])
+   }, [page])
 
    const loadUser = async () => {
       setLoader(true);
@@ -61,6 +61,10 @@ function Users() {
       setUsersSort(sort);
    }
 
+   const changePage = (e) => {
+      setPage(e.target.textContent);
+   }
+
    return (
       <>
          <Modal visible={visible} setVisible={setVisible} >
@@ -83,10 +87,10 @@ function Users() {
                </div>
             </div>
          </div>
-         <div>
+         <div className='position__page'>
             {
                pagesArray.map((p, idx) => {
-                  return <span key={idx} className='page'>{p}</span>
+                  return <span key={idx} className='page' onClick={changePage} >{p}</span>
                })
             }
          </div>

@@ -63,7 +63,7 @@ body {
 }
 
 .user__list {
-   width: 550px;
+   width: 650px;
    display: flex;
    padding: 7px;
    border: 1px solid white;
@@ -127,8 +127,36 @@ body {
    border-bottom: 3px solid white;
 }
 
+.position__page{
+   position: absolute;
+   bottom: 180px;
+   left: 150px;
+}
+
 .page {
    padding: 10px;
    border: 2px solid rgb(50, 160, 50);
+   cursor: pointer;
+}
+
+.navigate__user{
+   border: 2px solid rgb(50, 160, 50);
+   background: rgb(50, 160, 50);
+   border-radius: 10px;
+   font-family: "Roboto";
+   font-style: normal;
+   font-size: 18px;
+   cursor: pointer;
+}
+
+.exit{
+   width: 100px;
+   height: 30px;
+   border: 2px solid rgb(50, 160, 50);
+   background: rgb(50, 160, 50);
+   border-radius: 10px;
+   font-family: "Roboto";
+   font-style: normal;
+   font-size: 18px;
    cursor: pointer;
 }
