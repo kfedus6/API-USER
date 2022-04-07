@@ -10,12 +10,16 @@ const AuthProvider = ({ children }) => {
       { name: 'egor', password: '1111' },
    ])
 
-   const signin = (name, cbTo) => {
-      setUser(name)
+   const signin = (name, password, cbTo) => {
+      accounts.map(item => {
+         if (item.name === name && item.password === password) {
+            return setUser(name);
+         }
+      })
       cbTo()
    }
 
-   return <AuthContext.Provider value={{ user, accounts, signin }}>
+   return <AuthContext.Provider value={{ user, signin }}>
       {children}
    </AuthContext.Provider>
 

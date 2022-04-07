@@ -7,7 +7,7 @@ import Layout from './Components/Layout';
 import PageUser from './pages/PageUser';
 import Login from './pages/Login';
 import RequireAuth from './hoc/RequireAuth';
-import AuthProvider, { AuthContext } from './hoc/AuthProvider';
+import AuthProvider from './hoc/AuthProvider';
 
 import './App.css';
 

@@ -10,30 +10,29 @@ import UserForm from '../Components/UserForm';
 import SelectUsers from '../Components/UI/SelectUsers/SelectUsers';
 import Loader from '../Components/UI/Loader/Loader';
 import { getPagesArray, getPagesCount } from '../Components/PagesCount/PagesCount';
+import { useFetching } from '../hook/useFetching'
 
 function Users() {
    const [users, setUsers] = useState([]);
    const [querySearch, setQuerySearch] = useState('');
    const [visible, setVisible] = useState(false);
    const [usersSort, setUsersSort] = useState('');
-   const [loader, setLoader] = useState(false);
    const [totalPages, setTotalPages] = useState(0);
    const [limit, setLimit] = useState(3);
    const [page, setPage] = useState(1);
    let pagesArray = getPagesArray(totalPages);
 
-   useEffect(() => {
-      loadUser()
-   }, [page])
-
-   const loadUser = async () => {
-      setLoader(true);
+   const [loadUser, loader, error] = useFetching(async () => {
       const response = await PostService.getUsers(limit, page);
       setUsers(response.data);
       const totalCount = response.headers['x-total-count'];
       setTotalPages(getPagesCount(totalCount, limit));
-      setLoader(false);
-   }
+   })
+
+
+   useEffect(() => {
+      loadUser()
+   }, [page])
 
    const removeUser = (user) => {
       let newUsers = users.filter(item => item.name !== user.name);
@@ -77,7 +76,7 @@ function Users() {
                   <SelectUsers usersSort={usersSort} sortUsers={sortUsers} />
                </div>
                {
-                  loader ? <Loader /> : <UserList users={usersSearchedAndSorted} removeUser={removeUser} />
+                  loader ? <Loader /> : error ? <h2>Error</h2> : <UserList users={usersSearchedAndSorted} removeUser={removeUser} />
                }
             </div>
             <div className={cl.block__add}>
