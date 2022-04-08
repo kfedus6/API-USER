@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import ModalLogin from '../Components/UI/ModalLogin/ModalLogin';
 import { useAuth } from '../hook/useAuth';
 
 const Login = () => {
@@ -8,7 +9,8 @@ const Login = () => {
    const location = useLocation();
    const { signin } = useAuth();
    const navigate = useNavigate();
-
+   const { number } = useAuth();
+   console.log(number);
    const authorization = () => {
       signin(name, password, () => {
          navigate(location.state.from, { replace: true })
@@ -16,11 +18,16 @@ const Login = () => {
    }
 
    return (
-      <div>
-         <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Name' />
-         <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder='Name' />
-         <button onClick={authorization}>Login</button>
-      </div>
+      <>
+         <div>
+            <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Name' />
+            <input onChange={(e) => setPassword(e.target.value)} type="text" placeholder='Password' />
+            <button onClick={authorization}>Login</button>
+         </div>
+         <div>
+            <ModalLogin />
+         </div>
+      </>
    )
 }
 

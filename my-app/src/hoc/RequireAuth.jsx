@@ -3,10 +3,10 @@ import { useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../hook/useAuth';
 
 const RequireAuth = ({ children }) => {
-   const { user } = useAuth();
+   const { persone } = useAuth();
    const location = useLocation();
 
-   if (user === '') {
+   if (persone === '') {
       return <Navigate to='/login' state={{ from: location }} />
    }
    else {

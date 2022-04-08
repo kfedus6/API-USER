@@ -3,7 +3,7 @@ import { useState } from 'react'
 export const useFetching = (callback) => {
 
    const [loading, setLoading] = useState(false)
-   const [error, setError] = useState('')
+   const [UsersError, setUsersError] = useState('')
 
    const fetching = async () => {
       setLoading(true)
@@ -11,11 +11,11 @@ export const useFetching = (callback) => {
          callback()
       } catch (e) {
          console.log(e)
-         setError(e)
+         setUsersError(e)
       }
       setLoading(false)
    }
 
-   return [fetching, loading, error]
+   return [fetching, loading, UsersError]
 }
 

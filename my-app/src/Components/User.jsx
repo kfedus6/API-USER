@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 function User({ item, index, removeUser }) {
    const navigate = useNavigate();
+
    return (
       <>
          <span>{item.id}.</span>

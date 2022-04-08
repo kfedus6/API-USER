@@ -11,6 +11,7 @@ import SelectUsers from '../Components/UI/SelectUsers/SelectUsers';
 import Loader from '../Components/UI/Loader/Loader';
 import { getPagesArray, getPagesCount } from '../Components/PagesCount/PagesCount';
 import { useFetching } from '../hook/useFetching'
+import { useAuth } from '../hook/useAuth';
 
 function Users() {
    const [users, setUsers] = useState([]);
@@ -21,22 +22,31 @@ function Users() {
    const [limit, setLimit] = useState(3);
    const [page, setPage] = useState(1);
    let pagesArray = getPagesArray(totalPages);
+   const { persone } = useAuth();
+   const { accounts } = useAuth();
 
-   const [loadUser, loader, error] = useFetching(async () => {
+   const [loadUser, loader, UsersError] = useFetching(async () => {
       const response = await PostService.getUsers(limit, page);
       setUsers(response.data);
       const totalCount = response.headers['x-total-count'];
       setTotalPages(getPagesCount(totalCount, limit));
    })
 
-
    useEffect(() => {
       loadUser()
    }, [page])
 
    const removeUser = (user) => {
-      let newUsers = users.filter(item => item.name !== user.name);
-      setUsers(newUsers);
+      accounts.map(item => {
+         if (item.name === persone) {
+            if (item.status === 'u') {
+               alert('У вас нет прав админа');
+            } else {
+               let newUsers = users.filter(item => item.name !== user.name);
+               setUsers(newUsers);
+            }
+         }
+      })
    }
 
    const sortedUsers = useMemo(() => {
@@ -76,7 +86,7 @@ function Users() {
                   <SelectUsers usersSort={usersSort} sortUsers={sortUsers} />
                </div>
                {
-                  loader ? <Loader /> : error ? <h2>Error</h2> : <UserList users={usersSearchedAndSorted} removeUser={removeUser} />
+                  loader ? <Loader /> : UsersError ? <h2>Error</h2> : <UserList users={usersSearchedAndSorted} removeUser={removeUser} />
                }
             </div>
             <div className={cl.block__add}>

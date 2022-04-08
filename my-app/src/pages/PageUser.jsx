@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostService from '../API/PostService';
+import { useFetching } from '../hook/useFetching';
 
 function PageUser() {
    const { id } = useParams()
@@ -8,16 +9,17 @@ function PageUser() {
    const [user, setUser] = useState([]);
    const [post, setPost] = useState({});
 
-   useEffect(() => {
-      loadUserAndPost();
-   }, [])
-
-   const loadUserAndPost = async () => {
+   const [loadUserAndPost] = useFetching(async () => {
       const dataUser = await PostService.getOneUser(id);
       const dataPost = await PostService.getPost(id);
       setUser(dataUser);
       setPost(dataPost);
-   }
+   })
+
+
+   useEffect(() => {
+      loadUserAndPost();
+   }, [])
 
    return (
       <>
