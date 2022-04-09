@@ -10,16 +10,21 @@ const AuthProvider = ({ children }) => {
       { name: 'egor', password: '1111', status: 'u' },
    ])
    const [number, setNumber] = useState(2)
+
    const signin = (name, password, cbTo) => {
+      if (number === 2) {
+         setNumber(1);
+         alert(`У вас ${number} спробы`)
+      } else if (number === 1) {
+         setNumber(0);
+         alert(`У вас ${number} спробы`)
+      } else if (number === 0) {
+         setNumber(-1)
+         alert(`У вас 0 спроб`)
+      }
       accounts.map(item => {
          if (item.name === name && item.password === password) {
             return setPersone(name)
-         } else if (item.name != name && item.password != password && number === 2) {
-            setNumber(1);
-            alert(`У вас ${number} спробы`)
-         } else if (number === 1) {
-            setNumber(0);
-            alert(`У вас ${number} спробы`)
          }
       })
       cbTo()
