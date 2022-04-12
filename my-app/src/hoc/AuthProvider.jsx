@@ -13,20 +13,14 @@ const AuthProvider = ({ children }) => {
 
    const signin = (name, password, cbTo) => {
 
-      accounts.map(item => {
-         if (item.name === name && item.password === password) {
-            return setPersone(name)
-         } else if (item.name !== name && item.password !== password && number === 2) {
-            setNumber(1);
-            alert(`У вас ${number} спробы`)
-         } else if (item.name !== name && item.password !== password && number === 1) {
-            setNumber(0);
-            alert(`У вас ${number} спробы`)
-         } else if (item.name !== name && item.password !== password && number === 0) {
-            setNumber(-1)
-            alert(`У вас 0 спроб`)
-         }
-      })
+      const account = accounts.filter(account => account.name == name && account.password == password);
+      if (account.length == 0) {
+         setNumber(number - 1)
+         alert(`У вас ${number} спроб`)
+      } else {
+         setNumber(3)
+         setPersone(name)
+      }
       cbTo()
    }
 

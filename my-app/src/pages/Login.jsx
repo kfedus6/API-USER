@@ -9,8 +9,7 @@ const Login = () => {
    const location = useLocation();
    const { signin } = useAuth();
    const navigate = useNavigate();
-   const { number } = useAuth();
-   console.log(number);
+
    const authorization = () => {
       signin(name, password, () => {
          navigate(location.state.from, { replace: true })
